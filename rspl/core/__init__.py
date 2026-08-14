@@ -8,7 +8,6 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass, field
-from typing import List, Optional
 
 
 @dataclass(frozen=True)
@@ -19,13 +18,13 @@ class Pose:
     y: float
     theta: float = 0.0
 
-    def distance_to(self, other: "Pose") -> float:
+    def distance_to(self, other: Pose) -> float:
         return math.hypot(self.x - other.x, self.y - other.y)
 
-    def heading_to(self, other: "Pose") -> float:
+    def heading_to(self, other: Pose) -> float:
         return math.atan2(other.y - self.y, other.x - self.x)
 
-    def __add__(self, other: "Pose") -> "Pose":
+    def __add__(self, other: Pose) -> Pose:
         return Pose(self.x + other.x, self.y + other.y, self.theta + other.theta)
 
 
@@ -47,7 +46,7 @@ class Action:
     linear_velocity: float  # m/s
     angular_velocity: float  # rad/s
 
-    def clamped(self, max_linear: float, max_angular: float) -> "Action":
+    def clamped(self, max_linear: float, max_angular: float) -> Action:
         return Action(
             linear_velocity=max(-max_linear, min(max_linear, self.linear_velocity)),
             angular_velocity=max(-max_angular, min(max_angular, self.angular_velocity)),
@@ -59,7 +58,7 @@ class Task:
     """A task the policy must satisfy."""
 
     goal: Pose
-    waypoints: List[Pose] = field(default_factory=list)
+    waypoints: list[Pose] = field(default_factory=list)
     max_steps: int = 1000
     goal_tolerance: float = 0.15  # m
     name: str = "go-to-goal"

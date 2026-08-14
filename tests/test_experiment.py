@@ -29,7 +29,11 @@ def test_episode_runs_to_goal(world):
 
 def test_experiment_aggregates(world):
     summary = run_experiment(
-        "kinematic", world, ObstacleAvoidancePolicy(), Pose(0, 0), Pose(5.0, 0.5),
+        "kinematic",
+        world,
+        ObstacleAvoidancePolicy(),
+        Pose(0, 0),
+        Pose(5.0, 0.5),
         seeds=[0, 1, 2],
     )
     assert summary.episodes == 3

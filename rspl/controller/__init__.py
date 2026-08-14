@@ -7,8 +7,6 @@ within the robot's kinematic limits.
 
 from __future__ import annotations
 
-from typing import Optional
-
 from rspl.core import Action, Pose, State
 
 
@@ -31,7 +29,7 @@ class VelocityController:
         self.min_linear = min_linear
         self.arrival_threshold = arrival_threshold
 
-    def compute(self, state: State, target: Optional[Pose]) -> Action:
+    def compute(self, state: State, target: Pose | None) -> Action:
         if target is None:
             return Action(0.0, 0.0)
 
@@ -44,7 +42,9 @@ class VelocityController:
 
         heading_err = state.pose.heading_to(target) - state.pose.theta
         # wrap to [-pi, pi]
-        heading_err = (heading_err + 3.141592653589793) % (2 * 3.141592653589793) - 3.141592653589793
+        heading_err = (heading_err + 3.141592653589793) % (
+            2 * 3.141592653589793
+        ) - 3.141592653589793
 
         linear = self.k_linear * dist
         angular = self.k_angular * heading_err

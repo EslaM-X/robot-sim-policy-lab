@@ -6,8 +6,6 @@ visibility and clearance checks. It is geometry — no physics, no randomness.
 
 from __future__ import annotations
 
-from typing import List
-
 from rspl.core import Pose, Task
 from rspl.world import World
 

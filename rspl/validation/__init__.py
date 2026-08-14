@@ -10,10 +10,9 @@ from __future__ import annotations
 
 import json
 import statistics
-from typing import List
 
 from rspl.controller import VelocityController
-from rspl.core import Action, EpisodeReport, Pose, Task
+from rspl.core import EpisodeReport, Pose, Task
 from rspl.metrics import EpisodeCollector, ExperimentSummary
 from rspl.policy import ObstacleAvoidancePolicy, Policy
 from rspl.sim import make_simulator

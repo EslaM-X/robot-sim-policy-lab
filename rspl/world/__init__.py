@@ -8,7 +8,6 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import List, Optional, Tuple
 
 
 @dataclass(frozen=True)
@@ -22,8 +21,8 @@ class CircleObstacle:
 class World:
     """A planar world with circular obstacles and a safety margin for the robot."""
 
-    def __init__(self, obstacles: Optional[List[CircleObstacle]] = None, robot_radius: float = 0.2):
-        self.obstacles: List[CircleObstacle] = list(obstacles or [])
+    def __init__(self, obstacles: list[CircleObstacle] | None = None, robot_radius: float = 0.2):
+        self.obstacles: list[CircleObstacle] = list(obstacles or [])
         self.robot_radius = robot_radius
 
     def add(self, obstacle: CircleObstacle) -> None:
@@ -33,9 +32,9 @@ class World:
         """Minimum distance from point to any obstacle surface (negative = inside)."""
         if not self.obstacles:
             return math.inf
-        return min(
-            math.hypot(x - o.x, y - o.y) - o.radius for o in self.obstacles
-        ) - self.robot_radius
+        return (
+            min(math.hypot(x - o.x, y - o.y) - o.radius for o in self.obstacles) - self.robot_radius
+        )
 
     def collides(self, x: float, y: float) -> bool:
         for o in self.obstacles:
@@ -43,7 +42,7 @@ class World:
                 return True
         return False
 
-    def nearest_obstacle(self, x: float, y: float) -> Optional[Tuple[CircleObstacle, float]]:
+    def nearest_obstacle(self, x: float, y: float) -> tuple[CircleObstacle, float] | None:
         best = None
         best_dist = math.inf
         for o in self.obstacles:
@@ -57,8 +56,7 @@ class World:
         return {
             "robot_radius": self.robot_radius,
             "obstacles": [
-                {"name": o.name, "x": o.x, "y": o.y, "radius": o.radius}
-                for o in self.obstacles
+                {"name": o.name, "x": o.x, "y": o.y, "radius": o.radius} for o in self.obstacles
             ],
         }
 

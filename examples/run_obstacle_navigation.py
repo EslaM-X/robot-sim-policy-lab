@@ -11,10 +11,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from rspl.core import Pose  # noqa: E402
-from rspl.policy import ObstacleAvoidancePolicy  # noqa: E402
-from rspl.validation import run_experiment, sim2sim  # noqa: E402
-from rspl.world import sparse_obstacle_field  # noqa: E402
+from rspl.core import Pose
+from rspl.policy import ObstacleAvoidancePolicy
+from rspl.validation import sim2sim
+from rspl.world import sparse_obstacle_field
 
 
 def main():

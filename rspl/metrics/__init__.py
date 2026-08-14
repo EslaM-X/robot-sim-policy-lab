@@ -6,9 +6,7 @@ internal claims, so the same collector works for every backend.
 
 from __future__ import annotations
 
-import math
 from dataclasses import dataclass, field
-from typing import List
 
 from rspl.core import EpisodeReport, Pose, State
 from rspl.world import World
@@ -24,7 +22,7 @@ class EpisodeCollector:
     start: Pose
     seed: int = 0
     goal_tolerance: float = 0.15
-    states: List[State] = field(default_factory=list)
+    states: list[State] = field(default_factory=list)
     collisions: int = 0
     contacts: int = 0
 
@@ -64,7 +62,10 @@ class EpisodeCollector:
             start=self.start,
             end=end,
             seed=self.seed,
-            metadata={"goal": {"x": round(goal.x, 4), "y": round(goal.y, 4)}, "max_steps": max_steps},
+            metadata={
+                "goal": {"x": round(goal.x, 4), "y": round(goal.y, 4)},
+                "max_steps": max_steps,
+            },
         )
 
 

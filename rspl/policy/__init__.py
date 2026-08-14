@@ -8,7 +8,6 @@ that target. Policies are pure and deterministic — no physics imports.
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Optional
 
 from rspl.core import Pose, State, Task
 from rspl.world import World
@@ -20,7 +19,7 @@ class Policy(ABC):
     name: str = "policy"
 
     @abstractmethod
-    def select_target(self, state: State, task: Task, world: World) -> Optional[Pose]:
+    def select_target(self, state: State, task: Task, world: World) -> Pose | None:
         """Return the next target the robot should steer toward, or None to stop."""
 
 
@@ -33,7 +32,7 @@ class GoToGoalPolicy(Policy):
 
     name = "go-to-goal"
 
-    def select_target(self, state: State, task: Task, world: World) -> Optional[Pose]:
+    def select_target(self, state: State, task: Task, world: World) -> Pose | None:
         if state.pose.distance_to(task.goal) <= task.goal_tolerance:
             return None
         return task.goal
@@ -51,7 +50,7 @@ class WaypointPolicy(Policy):
     def __init__(self, waypoints):
         self._waypoints = list(waypoints)
 
-    def select_target(self, state: State, task: Task, world: World) -> Optional[Pose]:
+    def select_target(self, state: State, task: Task, world: World) -> Pose | None:
         if not self._waypoints:
             return None
         current = self._waypoints[0]
@@ -71,12 +70,14 @@ class ObstacleAvoidancePolicy(Policy):
 
     name = "potential-field"
 
-    def __init__(self, obstacle_gain: float = 0.9, safe_radius: float = 1.2, max_force: float = 1.5):
+    def __init__(
+        self, obstacle_gain: float = 0.9, safe_radius: float = 1.2, max_force: float = 1.5
+    ):
         self.obstacle_gain = obstacle_gain
         self.safe_radius = safe_radius
         self.max_force = max_force
 
-    def select_target(self, state: State, task: Task, world: World) -> Optional[Pose]:
+    def select_target(self, state: State, task: Task, world: World) -> Pose | None:
         pose = state.pose
         if pose.distance_to(task.goal) <= task.goal_tolerance:
             return None

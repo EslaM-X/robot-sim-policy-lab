@@ -156,7 +156,9 @@ def _load_pybullet(world: World):
     p.setGravity(0, 0, -9.81, physicsClientId=physics_client)
     p.setTimeStep(0.05, physicsClientId=physics_client)
     plane_col = p.createCollisionShape(p.GEOM_PLANE, physicsClientId=physics_client)
-    plane_vis = p.createVisualShape(p.GEOM_PLANE, rgbaColor=[0.4, 0.4, 0.4, 1.0], physicsClientId=physics_client)
+    plane_vis = p.createVisualShape(
+        p.GEOM_PLANE, rgbaColor=[0.4, 0.4, 0.4, 1.0], physicsClientId=physics_client
+    )
     plane = p.createMultiBody(
         baseMass=0,
         baseCollisionShapeIndex=plane_col,
@@ -216,7 +218,9 @@ class PyBulletSimulator(_EngineSimulator):
         self._p.resetBasePositionAndOrientation(
             self._robot_body, [start.x, start.y, 0.05], [0, 0, 1, 0], physicsClientId=self._client
         )
-        self._p.resetBaseVelocity(self._robot_body, [0, 0, 0], [0, 0, 0], physicsClientId=self._client)
+        self._p.resetBaseVelocity(
+            self._robot_body, [0, 0, 0], [0, 0, 0], physicsClientId=self._client
+        )
         self.start = start
         self.pose = start
         self.t = 0.0
@@ -228,9 +232,13 @@ class PyBulletSimulator(_EngineSimulator):
 
         vx = a.linear_velocity * math.cos(self.pose.theta)
         vy = a.linear_velocity * math.sin(self.pose.theta)
-        self._p.resetBaseVelocity(self._robot_body, [vx, vy, 0], [0, 0, a.angular_velocity], physicsClientId=self._client)
+        self._p.resetBaseVelocity(
+            self._robot_body, [vx, vy, 0], [0, 0, a.angular_velocity], physicsClientId=self._client
+        )
         self._p.stepSimulation(physicsClientId=self._client)
-        pos, orn = self._p.getBasePositionAndOrientation(self._robot_body, physicsClientId=self._client)
+        pos, orn = self._p.getBasePositionAndOrientation(
+            self._robot_body, physicsClientId=self._client
+        )
         theta = math.atan2(2 * (orn[3] * orn[2]), 1 - 2 * (orn[2] ** 2))  # yaw from quaternion
         self.pose = Pose(pos[0], pos[1], theta)
         self.velocity = a.linear_velocity
