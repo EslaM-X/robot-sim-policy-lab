@@ -1,0 +1,44 @@
+{
+  "simulators": [
+    {
+      "simulator": "kinematic",
+      "policy": "potential-field",
+      "episodes": 3,
+      "success_rate": 1.0,
+      "collision_rate": 0.0,
+      "mean_path_length": 5.1425,
+      "mean_duration": 11.2,
+      "min_clearance_p50": 0.2284
+    },
+    {
+      "simulator": "mujoco",
+      "policy": "potential-field",
+      "episodes": 3,
+      "success_rate": 1.0,
+      "collision_rate": 0.0,
+      "mean_path_length": 5.1473,
+      "mean_duration": 11.9,
+      "min_clearance_p50": 0.2351
+    },
+    {
+      "simulator": "pybullet",
+      "policy": "potential-field",
+      "episodes": 3,
+      "success_rate": 1.0,
+      "collision_rate": 0.0,
+      "mean_path_length": 5.3976,
+      "mean_duration": 15.6667,
+      "min_clearance_p50": 0.0859
+    }
+  ],
+  "max_path_length_deviation_m": 0.2551,
+  "policies": [
+    "potential-field",
+    "potential-field",
+    "potential-field"
+  ],
+  "goal": {
+    "x": 5.0,
+    "y": 0.5
+  }
+}
