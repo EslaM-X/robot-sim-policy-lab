@@ -1,0 +1,16 @@
+labels: [discussion]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Welcome to the robot-sim-policy-lab discussions
+
+        Policy-driven robotics simulation: measurable task execution, physics
+        validation, and simulator-to-simulator testing.
+
+        - **Q&A** — ask anything about installing, running, or extending the lab.
+        - **Ideas** — proposals for new policies, simulators, or metrics.
+        - **Show and tell** — share the experiments you run with it.
+        - **Feedback** — what gets in the way of using it in research?
+
+        Before posting, skim the [README](../../README.md) and [docs](../../docs).
