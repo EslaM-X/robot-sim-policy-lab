@@ -1,0 +1,44 @@
+flowchart TB
+    subgraph PURE["Physics-free layers - no engine import, unit-testable without MuJoCo/PyBullet"]
+        TASK["Task - rspl/core<br/>goal + waypoints + tolerance"]
+        WORLD["World model - rspl/world<br/>circle obstacles, clearance(), collides()"]
+        PLANNER["Planner - rspl/planner<br/>Direct / Clearance<br/>geometry only, no physics"]
+        POLICY["Policy - rspl/policy<br/>GoToGoal / Waypoint / PotentialField<br/>pure: state + task + world -> target Pose or None"]
+        CONTROLLER["Controller - rspl/controller<br/>VelocityController<br/>heading error -> angular velocity"]
+        COLLECT["EpisodeCollector - rspl/metrics<br/>measures state history only,<br/>never the engine's internal claims"]
+    end
+
+    subgraph ENGINES["Engine-dependent layers - optional backends"]
+        SIM["Simulator - rspl/sim<br/>make_simulator(name) factory"]
+        KIN["KinematicSimulator<br/>rspl/sim/kinematic.py<br/>exact unicycle, no RNG<br/>deterministic reference"]
+        MJ["MuJoCoSimulator<br/>rspl/sim/__init__.py<br/>free-joint box body"]
+        PB["PyBulletSimulator<br/>rspl/sim/__init__.py<br/>DIRECT headless mode"]
+    end
+
+    REPORT["EpisodeReport - rspl/core<br/>machine-readable"]
+    EXP["run_experiment - rspl/validation<br/>ExperimentSummary over seeds"]
+    S2S["sim2sim - rspl/validation<br/>same policy across simulators,<br/>max path-length deviation"]
+    JSON["benchmarks/result.json<br/>measured result, not estimation"]
+
+    TASK --> PLANNER
+    WORLD --> PLANNER
+    WORLD --> POLICY
+    PLANNER --> POLICY
+    SIM -- "state" --> POLICY
+    POLICY -- "target Pose or None" --> CONTROLLER
+    CONTROLLER -- "Action (clamped)" --> SIM
+    SIM --> KIN
+    SIM --> MJ
+    SIM --> PB
+    SIM -- "states" --> COLLECT
+    COLLECT --> REPORT
+    REPORT --> EXP
+    EXP --> S2S
+    S2S --> JSON
+
+    subgraph VALIDATION["Validation layer - every number from a real run"]
+        REPORT
+        EXP
+        S2S
+        JSON
+    end

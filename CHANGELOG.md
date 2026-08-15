@@ -4,6 +4,12 @@ All notable changes to `robot-sim-policy-lab`.
 
 ## [Unreleased]
 
+### Added
+- Architecture diagram (`docs/diagrams/robotics-policy-lab.mmd`, rendered
+  inline in `docs/architecture.md`): the control loop, the physics-free layer
+  boundary, the three interchangeable backends, and the sim-to-sim validation
+  flow, each mapped to its module and test in the evidence map.
+
 ## [v0.1.0] — 2026-08-14
 
 Initial release.
