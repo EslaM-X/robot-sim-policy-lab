@@ -12,6 +12,29 @@ comes from an actual run of this code (see `benchmarks/result.json`).
 
 ---
 
+## Demo (real run, ~1 second)
+
+```sh
+pip install -e ".[test]"
+python examples/run_obstacle_navigation.py --sim kinematic --seeds 0
+```
+
+Actual output — a robot navigating an obstacle field from `(0,0)` to `(5.0, 0.5)`:
+
+```json
+{
+  "simulator": "kinematic",
+  "policy": "potential-field",
+  "success_rate": 1.0,
+  "collision_rate": 0.0,
+  "mean_path_length": 5.1545,
+  "min_clearance_p50": 0.2356
+}
+```
+
+The same task also runs on real physics engines (MuJoCo, PyBullet) and compares
+them head-to-head in the sim-to-sim report below.
+
 ## What it does
 
 ```
@@ -115,6 +138,13 @@ docs/         # architecture, methodology, validation notes
   circular.
 
 ---
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). Security issues: [SECURITY.md](SECURITY.md).
+
+If this work is useful to you, consider starring the repository — it helps the
+project reach more engineers.
 
 ## License
 
