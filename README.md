@@ -1,6 +1,6 @@
 # robot-sim-policy-lab
 
-[![License: Apache-2.0](https://img.shields.io/badge/License-Apache-2.0-blue.svg)](LICENSE) [![CI](https://github.com/EslaM-X/robot-sim-policy-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/EslaM-X/robot-sim-policy-lab/actions)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache-2.0-blue.svg)](LICENSE) [![CI](https://github.com/EslaM-X/robot-sim-policy-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/EslaM-X/robot-sim-policy-lab/actions) [![ProofX Verified](https://img.shields.io/badge/ProofX-Verified-FFB627?logo=shield&logoColor=white)](https://github.com/EslaM-X/proofx)
 
 > Policy-driven robotics simulation experiments with measurable task execution,
 > physics validation, and simulator-to-simulator testing.
