@@ -1,0 +1,84 @@
+{
+  "proofVersion": "1.0",
+  "id": "PX-6ad8b4ee",
+  "project": {
+    "name": "EslaM-X/robot-sim-policy-lab",
+    "repository": "EslaM-X/robot-sim-policy-lab"
+  },
+  "subject": {
+    "commit": "197107d0c68033639200416514d7bec4c1e3562f",
+    "branch": "main",
+    "repository": "EslaM-X/robot-sim-policy-lab"
+  },
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Built from the recorded git commit",
+      "status": "evidenced"
+    },
+    {
+      "id": "c2",
+      "text": "Artifacts have known sha256 digests",
+      "status": "evidenced"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "artifact",
+      "type": "artifact",
+      "source": "sha256 of configured artifacts",
+      "timestamp": "2026-08-17T10:05:02Z",
+      "payload": "{\"files\":{\"LICENSE\":\"f06177f90e2399620eb3b5d80e705d3c7217b6b4457f5452d27b2b94dba88022\",\"README.md\":\"fb3ed419fc2cd2188143a853d2cae3777b72d6db1bab5503011500500483e313\",\"pyproject.toml\":\"da2360029a084ba2f47f498947299c1d01ac8135e6ea57305466670340828946\"}}",
+      "digest": "315c4f04cbe15baf11c91c2a427151d9ed06149e1b7887f90a66fbd9abd6a166"
+    },
+    {
+      "id": "environment",
+      "type": "environment",
+      "source": "build toolchain + os",
+      "timestamp": "2026-08-17T10:05:02Z",
+      "payload": "{\"go_version\":\"go version go1.26.5 windows/amd64\",\"node_version\":\"v24.18.0\",\"os\":\"windows\"}",
+      "digest": "656ba252b0775ce878ec6ecc7a99745231ddd6facf195316211ba5e0f63f275d"
+    },
+    {
+      "id": "git",
+      "type": "git",
+      "source": "git: https://github.com/EslaM-X/robot-sim-policy-lab.git",
+      "timestamp": "2026-08-17T10:05:02Z",
+      "payload": "{\"branch\":\"main\",\"commit\":\"197107d0c68033639200416514d7bec4c1e3562f\",\"commit_time\":\"2026-08-16T10:41:09+03:00\",\"dirty\":true,\"repository\":\"https://github.com/EslaM-X/robot-sim-policy-lab.git\"}",
+      "digest": "c83b7815fc46a36c43339bda060cd76385f9cbb3ab84477cf354551ca63f4e65"
+    }
+  ],
+  "binding": {
+    "algorithm": "sha256",
+    "root": "6ad8b4ee0ea80be1a1fa1801ebffa5ac84eae49674b3343ba0381a8ae80622be",
+    "entries": [
+      {
+        "id": "artifact",
+        "digest": "315c4f04cbe15baf11c91c2a427151d9ed06149e1b7887f90a66fbd9abd6a166"
+      },
+      {
+        "id": "environment",
+        "digest": "656ba252b0775ce878ec6ecc7a99745231ddd6facf195316211ba5e0f63f275d"
+      },
+      {
+        "id": "git",
+        "digest": "c83b7815fc46a36c43339bda060cd76385f9cbb3ab84477cf354551ca63f4e65"
+      }
+    ]
+  },
+  "signature": {
+    "algorithm": "ed25519",
+    "publicKey": "eFHOrbK8uFNvlco2uNFQPx3dgX3710H/VNw5X29sznE=",
+    "value": "DpSeye+7O/QSuiI84onUPP4PqtVQpBNgNtC6x0n2RX2e5DpJ0uoW9nnJ8j2YmpJWGS0onuS8IR++9b3Uh7RHBg=="
+  },
+  "coverage": {
+    "total": 3,
+    "verified": 3,
+    "score": 100
+  },
+  "createdAt": "2026-08-17T10:05:02Z",
+  "builder": {
+    "name": "proofx",
+    "version": "0.2.1"
+  }
+}
